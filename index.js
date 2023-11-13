@@ -9,27 +9,16 @@ require('dotenv').config();
 const app = express();
 
 // DB Connection
-const CONNECTION = require('./MongoDB/connection.js');
-
-const Mongo_DB_Connection = CONNECTION.createConnection();
+require('./MongoDB/connection.js');
 
 // App Listen at port
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 // Parse JSON requests
 app.use(bodyParser.json());
 
-// Handle POST requests to /api/post
-app.post('/api/post', (req, res) => {
-    // Access the posted data in the request body
-    const postData = req.body;
-
-    // Do something with the data (e.g., save it to a database)
-    console.log('Received POST data:', postData);
-
-    // Send a response
-    res.json({ message: 'Data received successfully!' });
-});
+// Routes
+app.use(require("./Routes/index"));
 
 // Start the server
 app.listen(port, () => {
