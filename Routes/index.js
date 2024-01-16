@@ -17,8 +17,7 @@ router.post('/sign_up', async (req, res) => {
         || !HaveValue(last_name)
         || !HaveValue(password)
         || !HaveValue(re_password)
-        || !HaveValue(email)
-        || !HaveValue(phone)) {
+        || !HaveValue(email)) {
         return res.status(422).json({ error: "please Fill the required fields" });
     }
 
